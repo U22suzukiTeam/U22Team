@@ -1,0 +1,65 @@
+html,body{
+    background:#16a085;
+    height:100vh;
+}
+
+.memberlist{
+    float: left;
+    position:fixed;
+    top: 0;
+    left: 0;
+    width:30%;
+    background:orange;
+    border:black solid 1px;
+    height:10vh;
+}
+
+.body{
+    background:white;
+    height:100vh;
+
+}
+
+.member{
+    color:white;
+    padding:15px;
+    cursor:pointer;
+}
+
+.toollist{
+    float: right;
+    position:fixed;
+    top: 0;
+    right: 0;
+    width:70%;
+    background:gray;
+    border:black solid 1px;
+    height:10vh;
+
+}
+
+.map{
+    height:50vh ;
+    background:lightskyblue;
+    border:black solid 1px;
+}
+
+.chat{
+    height: 30vh;
+    background:brown;
+    border:black solid 1px;
+}
+
+.log{
+    overflow: scroll;
+    width:90%;
+    height: 70%;
+    background-color:white;
+    margin: 0 auto;
+
+
+}
+
+.form{
+    width:60% ;
+}
