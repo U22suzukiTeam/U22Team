@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map</title>
+
+    <meta charset="utf-8">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            height: 500px;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<!--JS内でmapって名前の変数にマップの情報突っ込んだから idでmapを指定しているよ-->
+<div id="map"></div>
+
+
+<!--JS部分（外部ファイルにしよう）-->
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+
+            //最初の中心の位置
+            center: {lat: 35.658581, lng: 139.745433},
+
+            //最初の地図の倍率
+            zoom: 14
+        });
+    }
+</script>
+
+
+
+<!--API君を読み込む APIキーを忘れずに
+    ・・・js?key=APIキー&callback・・・　って感じだよ-->
+<script src="https://maps.googleapis.com/maps/api/js?key={APIキー}&callback=initMap"></script>
+</body>
+</html>
