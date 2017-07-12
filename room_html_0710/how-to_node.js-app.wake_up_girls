@@ -1,0 +1,9 @@
+install Node.js and npm.
+
+[command prompt]
+>npm init  		//create package.json
+>npm install socket.io
+>npm install express
+>node app.js 	//run nodejs server 
+
+access your browser to [ http://localhost:810 ]
