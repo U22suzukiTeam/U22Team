@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+
+  <TITLE>新規登録ページ </TITLE>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</HEAD>
+<BODY>
+  <form name="form1" method="post" action="testConfirm.php" onSubmit="return FormCheck()">
+  <div class="container">
+  <div class="panel panel-primary"
+    style="position:absoluto;
+	top:50%;left:50%;
+	width:400px;
+	margin-left:350px;
+	margin-top:150px;">
+    <div class="panel-heading">
+	  <h1 class="panel-title">新規登録</h1>
+	</div>
+	<div class="panel-body">
+	<form name="form1" method="post" action="confirm.php" onSubmit="return FormCheck()">
+	<div><?php echo htmlspecialchars($errorMessage, ENT_QUOTES); ?></div>
+	  <div class="form-group">
+	    <label for="accountname">アカウント名</label>
+		<input type="text" class="form-control" id="accountname" name="accountname">
+	  </div>
+	  <div class="form-group">
+	    <label for="username">ユーザーネーム(表示名)</label>
+		<input type="text" class="form-control" id="username" name="username">
+	  </div>
+	  <div class="form-group">
+	    <label for="password">パスワード</label>
+		<input type="text" class="form-control" id="password" name="password">
+	  </div>
+	  <div class="form-group">
+	    <label for="password2">パスワード(再入力)</label>
+		<input type="text" class="form-control" id="password2" name="password2">
+	  </div>
+	  <button id="btn" name="btn" type="submit" class="btn btn-default">登録</button>
+	</form>
+	</div>
+  </div>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  // フォームチェック
+  function FormCheck() {
+
+	// 未入力チェック
+	var val = document.getElementsByName("accountname")[0];
+	if ( jsTrim( val.value ).length == 0 ) {
+		alert( "アカウント名は必須入力です" );
+		val.focus();
+		return false;
+	}
+	
+	// 未入力チェック
+	var val = document.getElementsByName("username")[0];
+	if ( jsTrim( val.value ).length == 0 ) {
+		alert( "ユーザーネーム(表示名)は必須入力です" );
+		val.focus();
+		return false;
+	}
+
+	// 未入力チェック
+	var val = document.getElementsByName("password")[0];
+	if ( jsTrim( val.value ).length == 0 ) {
+		alert( "パスワードは必須入力です" );
+		val.focus();
+		return false;
+	}
+	
+	// 未入力チェック
+	var val = document.getElementsByName("password2")[0];
+	if ( jsTrim( val.value ).length == 0 ) {
+		alert( "パスワード(再入力)は必須入力です" );
+		val.focus();
+		return false;
+	}
+	
+	//パスワードチェック
+	if (form1.password.value != form1.password2.value) {
+		alert("パスワードが一致しません");
+		return false;
+	}
+  }
+
+// 前後スペース削除(全角半角対応)
+function jsTrim( val ) {
+
+	var ret = val;
+
+	ret = ret.replace( /^[\s]*/, "" );
+	ret = ret.replace( /[\s]*$/, "" );
+
+	return ret;
+}
+
+// 前スペース削除(全角半角対応)
+function jsLTrim( val ) {
+	var ret = val;
+
+	ret = ret.replace( /^[\s]*/, "" );
+
+	return ret;
+}
+
+// 後スペース削除(全角半角対応)
+function jsRTrim( val ) {
+	var ret = val;
+
+	ret = ret.replace( /^[\s]*/, "" );
+
+	return ret;
+}
+</script>
+  
+</BODY>
+</HTML>
