@@ -47,30 +47,48 @@ try {
   $pdo->commit();
   ?>
   
-  <div class="center-block" style="width:200px">
+  <div class="text-center" style="font-size:xx-large; margin-top:150px;">
   <p>登録が完了しました！</p>
   </div>
- 
- <?php
-}catch (PDOException $Exception) {
-  $pdo->rollBack();
-  //print "エラー：" . $Exception->getMessage();
-  print "申し訳ございません。希望のアカウント名は既に使用されています。<BR>";
-  print "別のアカウント名を使用してください。";
-}
-?>
-
-<br><br><br>
+  <div class="text-center" style="font-size:x-large;">
+  <p>引き続き、本サービスをご利用ください。</p>
+  </div>
+  
 <form name="form1" action="entry2.html">
   <div class="panel panel-primary"
     style="position:absoluto;
 	top:50%;left:50%;
 	width:402px;
-	margin-left:350px;
-	margin-top:150px;">
+	margin-left:550px;
+	margin-top:100px;">
     <button id="btn" name="btn" type="submit" class="btn btn-lg" style="width:400px">トップページへ</button>
   </div>
 </form>
+ 
+ <?php
+}catch (PDOException $Exception) {
+  $pdo->rollBack();
+?>
+  <div class="text-center" style="font-size:x-large; margin-top:150px;">
+  <p>申し訳ございません。希望のアカウント名は既に使用されています。</p><BR>
+  <p>別のアカウント名を使用してください。</p>
+  </div>
+
+<form name="form1" action="entry2.html">
+  <div class="panel panel-primary"
+    style="position:absoluto;
+	top:50%;left:50%;
+	width:402px;
+	margin-left:550px;
+	margin-top:100px;">
+    <button id="btn" name="btn" type="submit" class="btn btn-lg" style="width:400px">戻る</button>
+  </div>
+</form>
+
+<?php
+}
+?>
+
   
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
