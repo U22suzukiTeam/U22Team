@@ -26,17 +26,7 @@
 
         }
 
-      
-         .member,.tool{
-
-             color:white;
-             padding:15px;
-             cursor:pointer;
-
-         }
-
          .user{
-			color : white;
              margin: 0 auto;
 
          }
@@ -80,7 +70,7 @@
 			z-index: 1;
 			top: 0;
 			left: 0;
-			background-color: black;
+			background-color: white;
 			overflow-x: hidden; 
 			padding-top: 60px; 
 			transition: 0.5s;
@@ -90,18 +80,17 @@
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: black;
     display: block;
     transition: 0.3s
 }
 
 .sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
+    color: gray;
 }
 
 
 .sidenav .closebtn {
-    position: absolute;
     position: absolute;
     top: 0;
     right: 25px;
@@ -109,28 +98,12 @@
     margin-left: 50px;
 }
 
-#ico{
-  display: none;
-}
-
-.menu{
-  background: #000;
-  display: none;
-  padding: 5px;
-  width: 320px;
-  @include border-radius(5px);
 
      </style>
-
-    <script src="https://code.jquery.com/jquery.js"></script>
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
-
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-	<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
 
 </head>
 
@@ -139,13 +112,13 @@
 <nav class="navbar navbar-default ">
   <div class="container-fluid">
     <div class="navbar-header">
-    <div class="collapse navbar-collapse" id="nav_target">
+     <div class="collapse navbar-collapse" id="nav_target">
       <ul class="nav navbar-nav">
 	  
 	<div id="sideNavigation" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	
-	<h style="color:white;">MEMBER LIST</h>
+	<h>MEMBER LIST</h><BR>
 	
      <li class="user">青山吉能</li>
 	 <li class="user">永野愛理</li>
@@ -162,17 +135,18 @@
 
   <nav class="topnav">
     <a href="#" onclick="openNav()">
-      <svg width="30" height="30" id="icoOpen">
+      <svg width="30" height="30">
           <path d="M0,5 30,5" stroke="#000" stroke-width="5"/>
           <path d="M0,14 30,14" stroke="#000" stroke-width="5"/>
           <path d="M0,23 30,23" stroke="#000" stroke-width="5"/>
       </svg>
     </a>
-  </nav>
-  <ul class="nav navbar-nav navbar-right">
+
+  <ul class="nav navbar-nav navbar-right" >
           <li><a href="../top/top.html">TOP</a></li>
           <li><a href="../mypage/mypage.php">MY PAGE</a></li>
       </ul>
+  </nav>
     </div>
   </div>
  </div>
@@ -181,7 +155,7 @@
 
 <div class="map">
 
-<div>ちず</div>
+<div id="map" style="height: 100%; width: 100%;"></div>
 
 </div>
 
@@ -206,7 +180,17 @@
 
 </div>
 
+<script src="https://code.jquery.com/jquery.js"></script>
+
+<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
+
 <script src="/socket.io/socket.io.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  
+<script type="text/javascript" src="Map.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=  &amp;callback=initMap"></script>
 
 <script>
 
@@ -261,6 +245,8 @@ function closeNav() {
     document.getElementById("sideNavigation").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
 }
+
+
 </script>
 
 </body>
