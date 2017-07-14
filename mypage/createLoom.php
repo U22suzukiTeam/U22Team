@@ -15,7 +15,7 @@ $today = date("Ymdhis");
 $address = $_SESSION["username"] . $today;
 
 
-$url = "http://[サーバのアドレス]/[ディレクトリ名]/room.html?". $url2;
+$url = "http://150.95.140.30/U22Team/room.html?". $url2;
 
 //DB接続
 $pdo = connectDb();
