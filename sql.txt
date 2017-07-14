@@ -40,7 +40,7 @@ CREATE TABLE chat (
   chatID INT NOT NULL AUTO_INCREMENT COMMENT 'チャットID（主キー）',
   memberID INT NOT NULL COMMENT 'メンバーID（member:memberID）',
   contents VARCHAR(140) NOT NULL COMMENT 'チャット内容',
-  timestamp DATETIME(14) NOT NULL COMMENT 'タイムスタンプ',
+  timestamp DATETIME NOT NULL COMMENT 'タイムスタンプ',
   PRIMARY KEY (chatID),
   FOREIGN KEY (memberID) REFERENCES member(memberID)
 )engine=InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
