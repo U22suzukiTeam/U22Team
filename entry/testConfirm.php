@@ -7,19 +7,20 @@
 </HEAD>
 <BODY>
 <?php
-
-$db_user = "AAA";	// ユーザー名
-$db_pass = "ju78iklo";	// パスワード
+//require_once "config.php";
+$db_user = "suzuki_nishibe";	// ユーザー名
+$db_pass = "putin_kawasaki";	// パスワード
 $db_host = "localhost";	// ホスト名
 $db_name = "U22";	// データベース名
 $db_type = "mysql";	// データベースの種類
+//GRANT ALL PRIVILEGES ON U22.* TO 'suzuki_nishibe'@'localhost' IDENTIFIED BY 'putin_kawasaki';
 
 $account = $_POST["accountname"];
 
 $dsn = "$db_type:host=$db_host;dbname=$db_name;charset=utf8";
 
 try {
-  $pdo = new PDO($dsn, $db_user,$db_pass);
+  $pdo = new PDO($dsn, $db_user, $db_pass);
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
   //print "接続しました... <br>";
@@ -59,7 +60,7 @@ try {
     style="position:absoluto;
 	top:50%;left:50%;
 	width:402px;
-	margin-left:550px;
+	margin-left:475px;
 	margin-top:100px;">
     <button id="btn" name="btn" type="submit" class="btn btn-lg" style="width:400px">トップページへ</button>
   </div>
@@ -79,7 +80,7 @@ try {
     style="position:absoluto;
 	top:50%;left:50%;
 	width:402px;
-	margin-left:550px;
+	margin-left:475px;
 	margin-top:100px;">
     <button id="btn" name="btn" type="submit" class="btn btn-lg" style="width:400px">戻る</button>
   </div>
