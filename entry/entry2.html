@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<HTML>
-<HEAD>
+<html>
+<head>
 
-  <TITLE>新規登録ページ </TITLE>
+  <title>新規登録ページ </title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-</HEAD>
-<BODY>
+</head>
+<body>
   <form name="form1" method="post" action="testConfirm.php" onSubmit="return FormCheck()">
   <div class="container">
   <div class="panel panel-primary"
@@ -48,78 +48,7 @@
   
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-  // フォームチェック
-  function FormCheck() {
-
-	// 未入力チェック
-	var val = document.getElementsByName("accountname")[0];
-	if ( jsTrim( val.value ).length == 0 ) {
-		alert( "アカウント名は必須入力です" );
-		val.focus();
-		return false;
-	}
-	
-	// 未入力チェック
-	var val = document.getElementsByName("username")[0];
-	if ( jsTrim( val.value ).length == 0 ) {
-		alert( "ユーザーネーム(表示名)は必須入力です" );
-		val.focus();
-		return false;
-	}
-
-	// 未入力チェック
-	var val = document.getElementsByName("password")[0];
-	if ( jsTrim( val.value ).length == 0 ) {
-		alert( "パスワードは必須入力です" );
-		val.focus();
-		return false;
-	}
-	
-	// 未入力チェック
-	var val = document.getElementsByName("password2")[0];
-	if ( jsTrim( val.value ).length == 0 ) {
-		alert( "パスワード(再入力)は必須入力です" );
-		val.focus();
-		return false;
-	}
-	
-	//パスワードチェック
-	if (form1.password.value != form1.password2.value) {
-		alert("パスワードが一致しません");
-		return false;
-	}
-  }
-
-// 前後スペース削除(全角半角対応)
-function jsTrim( val ) {
-
-	var ret = val;
-
-	ret = ret.replace( /^[\s]*/, "" );
-	ret = ret.replace( /[\s]*$/, "" );
-
-	return ret;
-}
-
-// 前スペース削除(全角半角対応)
-function jsLTrim( val ) {
-	var ret = val;
-
-	ret = ret.replace( /^[\s]*/, "" );
-
-	return ret;
-}
-
-// 後スペース削除(全角半角対応)
-function jsRTrim( val ) {
-	var ret = val;
-
-	ret = ret.replace( /^[\s]*/, "" );
-
-	return ret;
-}
-</script>
+  <script src="js/entry.js"></script>
   
-</BODY>
-</HTML>
+</body>
+</html>
