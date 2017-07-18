@@ -18,7 +18,7 @@
 
         $pdo->beginTransaction();
         //プレースホルダーを設定してSQL文を作る
-        $sql = "SELECT * FROM photo";
+        $sql = "SELECT * FROM point";
         //プリペアードステートメントで実行準備をする。
         $stmh = $pdo->prepare($sql);
         //プレースホルダーに設定する値を指示
