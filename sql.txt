@@ -50,6 +50,7 @@ CREATE TABLE point (
   memberID INT NOT NULL COMMENT 'メンバーID（member:memberID）',
   latitude DOUBLE(8,6) NOT NULL COMMENT '緯度',
   longitude DOUBLE(9,6) NOT NULL COMMENT '経度',
+  delflg BIT(1) NOT NULL DEFAULT b'0' COMMENT '削除フラグ',
   PRIMARY KEY (pointID),
   FOREIGN KEY (memberID) REFERENCES member(memberID)
 )engine=InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
