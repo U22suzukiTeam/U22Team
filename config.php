@@ -1,4 +1,4 @@
-<?
+<?php
 define('db_user',"suzuki_nishibe");
 define('db_pass',"putin_kawasaki");
 define('db_host',"localhost");
