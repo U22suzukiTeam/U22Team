@@ -10,6 +10,7 @@ function initMap() {
     var infoWindow = new google.maps.InfoWindow({map: map});
 
     var cnt = 0;
+    var myplace;
     var mylocation = function (){
         if (navigator.geolocation) {    //現在地が取得できるか判定します
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -19,22 +20,24 @@ function initMap() {
                     lng: position.coords.longitude
                 };
 
-                //現在地にマーカを置きます
-                var myplace = new google.maps.Marker({
-                    map: map,
-                    position: pos,
-                    icon: {
-                        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                        scale: 6
-                    }
-                });
                 
                 if(cnt === 0){  //初回のみ現在地マーカの削除を行わない
                     ++cnt;
                     console.log("初回");
                 }else{
                     myplace.setMap(null);
+                    console.log('更新');
                 }
+                
+                //現在地にマーカを置きます
+                myplace = new google.maps.Marker({
+                    //map: map,
+                    position: pos,
+                    icon: {
+                        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                        scale: 6
+                    }
+                });
                 
 
                 //地図の中心を現在地に書き換えます
@@ -48,36 +51,38 @@ function initMap() {
             handleLocationError(false, infoWindow, map.getCenter());
         }
     };
-        
-        
-    setInterval(mylocation, 5000);
     
     
-    //目的地を地図に表示するための処理   
-    $.ajax({
-        type: "get",
-        url: "ConnectDummyDB.php",
-        data: "",
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (data) {
+    var getOtherPoint  = function (){
+        //目的地を地図に表示するための処理   
+        $.ajax({
+            type: "get",
+            url: "ConnectDummyDB.php",
+            data: "",
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
 
-            $.each(data,function(index,val){
-               
-                var point = new google.maps.LatLng(
-                    data[index].latitude,
-                    data[index].longitude
-                );
+                $.each(data,function(index,val){
 
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: point
+                    var point = new google.maps.LatLng(
+                        data[index].latitude,
+                        data[index].longitude
+                    );
+
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: point
+                    });
+
                 });
-
-            });
-         }
-    });
-
+             }
+        });
+    };
+    
+    setInterval(mylocation, 1000);
+    setInterval(getOtherPoint, 5000);
+    
  
  
 }
