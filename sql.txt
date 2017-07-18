@@ -44,3 +44,12 @@ CREATE TABLE chat (
   PRIMARY KEY (chatID),
   FOREIGN KEY (memberID) REFERENCES member(memberID)
 )engine=InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
+
+CREATE TABLE point (
+  pointID INT NOT NULL AUTO_INCREMENT COMMENT '位置情報ID（主キー）',
+  memberID INT NOT NULL COMMENT 'メンバーID（member:memberID）',
+  latitude DOUBLE(8,6) NOT NULL COMMENT '緯度',
+  longitude DOUBLE(9,6) NOT NULL COMMENT '経度',
+  PRIMARY KEY (pointID),
+  FOREIGN KEY (memberID) REFERENCES member(memberID)
+)engine=InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
