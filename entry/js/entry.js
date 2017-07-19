@@ -2,8 +2,10 @@ function FormCheck() {
 
 	// 未入力チェック
 	var val = document.getElementsByName("accountname")[0];
-	if ( jsTrim( val.value ).length == 0 ) {
-		alert( "アカウント名は必須入力です" );
+	var val2 = document.getElementsByName("username")[0];
+	var val3 = document.getElementsByName("password")[0];
+	if ( jsTrim( val.value ).length == 0 & jsTrim(val2.value).length == 0) {
+		alert( "アカウント名は必須入力です\nユーザーネームは必須入力です" );
 		val.focus();
 		return false;
 	}
