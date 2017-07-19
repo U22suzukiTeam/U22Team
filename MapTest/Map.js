@@ -1,6 +1,7 @@
 
 var map
 var ID = Math.floor(Math.random () * 1000) + 1; //メンバーの管理関係が未完成なので暫定でメンバーIDつけます。
+console.log(ID);
 function initMap() {
     
     map = new google.maps.Map(document.getElementById('map'), {
@@ -10,7 +11,7 @@ function initMap() {
     });
     var infoWindow = new google.maps.InfoWindow({map: map});
 
-    var cnt = 0;
+    var MLcnt = 0;
     var myplace;
     var mylocation = function (){
         if (navigator.geolocation) {    //現在地が取得できるか判定します
@@ -22,8 +23,8 @@ function initMap() {
                     lng: position.coords.longitude
                 };
 
-                if(cnt === 0){  //初回のみ現在地マーカの削除を行わない
-                    ++cnt;
+                if(MLcnt === 0){  //初回のみ現在地マーカの削除を行わない
+                    ++MLcnt;
                     console.log("初回");
                 }else{
                     myplace.setMap(null);
@@ -44,7 +45,6 @@ function initMap() {
                 $.ajax({
                     type: 'POST',
                     url: "setPoint.php",
-                    
                     data: {
                         mID: ID,
                         lat: lat,
@@ -71,8 +71,9 @@ function initMap() {
     };
     
     
+    var GDPcnt = 0;
     var getDestinationPoint  = function (){
-        //目的地を地図に表示するための処理   
+        //目的地を地図に表示するための処理
         $.ajax({
             type: "get",
             url: "ConnectDummyDB.php",
@@ -80,55 +81,62 @@ function initMap() {
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-
+                
                 $.each(data,function(index,val){
-
                     var point = new google.maps.LatLng(
                         data[index].latitude,
                         data[index].longitude
                     );
-
-                    var marker = new google.maps.Marker({
+                    destPoint = new google.maps.Marker({
                         map: map,
                         position: point
                     });
-
+                    
                 });
+                
              }
         });
     };
     
     
-     var getOtherPoint  = function (){
+    var getOtherPoint  = function (){
+        var memberPoint;
         //他のメンバーの位置情報を取得   
         $.ajax({
             type: "get",
             url: "connectPointJson.php",
-            data: "",
+            data: {
+                mID: ID
+            },
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-
+                if(memberPoint != null|| memberPoint != undefined){
+                    memberPoint.setMap(null);
+                }
+                console.log('メンバの位置更新');
+                
                 $.each(data,function(index,val){
-
                     var point = new google.maps.LatLng(
                         data[index].latitude,
                         data[index].longitude
                     );
 
-                    var marker = new google.maps.Marker({
+                    memberPoint = new google.maps.Marker({
                         map: map,
                         position: point
                     });
-
                 });
-             }
+             },
+             error: function () {
+                console.log('だめだったよ');
+            }
         });
     };
    
    //上から「現在地の取得」「他の人の位置を取得」「目的地の取得」を一定間隔で行います。
     setInterval(mylocation, 1000);
-    setInterval(getOtherPoint, 3000);
+    setInterval(getOtherPoint, 1000);
     setInterval(getDestinationPoint, 5000);
 }
 
@@ -140,3 +148,13 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: Your browser doesn\'t support geolocation.');
 }
 
+//ページを離れるときその人の位置情報をDBから削除
+window.addEventListener('beforeunload',function(){
+     $.ajax({
+        type: 'POST',
+        url: "deletePoint.php",
+        data: {
+            mID: ID
+        }
+    });
+});

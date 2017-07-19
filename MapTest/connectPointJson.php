@@ -1,4 +1,6 @@
 <?php
+
+function getOtherPoint($mID){
     require_once('config.php');
 
     $dsn = db_type.":host=".db_host.";dbname=".db_name.";charset=utf8";
@@ -15,17 +17,13 @@
         //dbにアクセス
         //要素をSELECT * FROM pointで持ってくる
         //jsonに変換、出力
-
         $pdo->beginTransaction();
-        //プレースホルダーを設定してSQL文を作る
-        $sql = "SELECT * FROM point";
-        //プリペアードステートメントで実行準備をする。
+        //自分以外の人の位置情報を取得
+        $sql = "SELECT * FROM point WHERE memberID != :MID";
         $stmh = $pdo->prepare($sql);
-        //プレースホルダーに設定する値を指示
-        //ステートメントを実行する
+        $stmh->bindValue(':MID',  $mID,  PDO::PARAM_INT );
         $stmh->execute();
         $result = $stmh->fetchAll();
-        //コミット
         $pdo->commit();
 
         print json_encode($result,JSON_UNESCAPED_SLASHES);
@@ -34,4 +32,8 @@
         $pdo->rollBack();
         print "エラー：" . $Exception->getMessage()."<BR>";
     }
+}
+
+getOtherPoint($_GET['mID']);
+
 ?>
