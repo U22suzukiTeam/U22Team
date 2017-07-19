@@ -21,11 +21,11 @@ try{
 try {
     $pdo->beginTransaction();
     //プレースホルダーを設定してSQL文を作る
-    $sql = "SELECT username , password FROM user WHERE username = :username";
+    $sql = "SELECT accountname, username, password FROM user WHERE accountname = :accountname";
     //プリペアードステートメントで実行準備をする。
     $stmh = $pdo->prepare($sql);
     //プレースホルダーに設定する値を指示
-    $stmh->bindValue(':username',  $_POST['username'],  PDO::PARAM_STR );
+    $stmh->bindValue(':accountname',  $_POST['accountname'],  PDO::PARAM_STR );
     //ステートメントを実行する
     //$stmh->execute();
     $stmh->execute();
@@ -33,14 +33,14 @@ try {
 
     if(isset($result)){
         //ユーザ名が一致するか
-        if($_POST['username'] == $result['username']){
+        if($_POST['accountname'] == $result['accountname']){
             //ハッシュ化されたパスワードと一致するか
             $servedPass = $result['password'];
             $password = $_POST['password'];
             if(password_verify($password,$servedPass)){
                 //セッション発行
                 session_start();
-                $_SESSION['username']=$_POST['username'];
+                $_SESSION['username']=$result['username'];
                 //topページに強制移動
                 header("Location: mypage.php");
             }else{
