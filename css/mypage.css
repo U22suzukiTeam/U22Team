@@ -1,0 +1,15 @@
+﻿@charset "utf-8";
+header img {
+  display: block;
+}
+#logo {
+  margin: 20px 0;
+}
+
+.button {
+	background-color: #FF69B4;
+	float: left;
+	margin: 5px;
+	padding: 15px 50px;
+	font-size: 1.2em;
+}

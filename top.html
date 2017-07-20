@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+
+  <title>ログインページ </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+<body>
+  <!--<p>
+    <form name = "login" method = "POST" action = "login.php" onsubmit = "return check()">
+      アカウント名<input type = "text" name = "accountname"><br>
+      パスワード<input type = "password" name = "password"><br>
+      <input type = "submit" value = "ログイン">
+      <input type = "button" value = "取り消し">
+    </form>
+  </p>
+
+  <p>
+    アカウントを未登録ですか？
+    <input type = "button" value = "アカウントの作成" onclick = "location.href = 'entry.html'"><br>
+  </p>-->
+  
+  
+  <form name="form1" method="post" action="login.php" onSubmit="return check()">
+  <div class="container">
+  <div class="panel panel-primary"
+    style="position:absoluto;
+	top:50%;left:50%;
+	width:400px;
+	margin-left:350px;
+	margin-top:150px;">
+    <div class="panel-heading">
+	  <h1 class="panel-title">ログイン</h1>
+	</div>
+	<div class="panel-body">
+	<div><?php echo htmlspecialchars($errorMessage, ENT_QUOTES); ?></div>
+	  <div class="form-group">
+	    <label for="accountname">アカウント名</label>
+		<input type="text" class="form-control" id="accountname" name="accountname">
+	  </div>
+	  <div class="form-group">
+	    <label for="password">パスワード</label>
+		<input type="password" class="form-control" id="password" name="password">
+	  </div>
+	  <button id="btn" name="btn" type="submit" class="btn btn-default">登録</button>
+	  <br><br><br>
+	  <div class="form-group">
+	    <!--<label for="Unregistered">アカウントを未登録ですか？</label>
+		<input type="button" value="アカウントの作成" onclick="location.href = 'entry.html'">-->
+		<a href="entry.html">アカウント未登録の方はこちら</a>
+	  </div>	  
+	</div>
+  </div>
+  </div>
+  </form>
+  
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>  
+  
+</body>
+</html>
