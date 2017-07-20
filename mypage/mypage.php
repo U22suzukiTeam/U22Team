@@ -13,7 +13,7 @@ session_start();
 <!--
 	<img id="logo" src="images/logo.png" alt="待ち合わせするんです"width="400" height="80">
 -->
-	<p>ようこそ<u><?php echo htmlspecialchars($_SESSION["accountname"], ENT_QUOTES); ?></u>さん</p><br>
+	<p>ようこそ<u><?php echo htmlspecialchars($_SESSION["username"], ENT_QUOTES); ?></u>さん</p><br>
 
 <form action="createLoom.php" onsubmit="return Checkposition()">
 	<input class="button" type="submit" value="ルーム作成">
