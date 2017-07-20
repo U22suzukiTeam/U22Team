@@ -9,12 +9,12 @@
     </title>
 
      <style>
-         #chat{position: relative;width: 100%;float:left;min-height:100px;height: 90%;overflow: auto;}
+         #chat{position: relative;width: 100%;float:left;min-height:100px;height: 90%;overflow:Auto;}
          html,body{height:100vh;}
          .user{margin: 0 auto;}
          .map{height:50vh ;border:black solid 1px;}
          .Chat{height: 50vh;border:black solid 1px;}
-         .log{overflow: scroll;width:90%;height:70%;background-color:lightblue;margin: 0 auto;}
+         .log{width:90%;height:70%;background-color:lightblue;margin: 0 auto;}
          .input-group{width:70%;text-align:center;margin: 0 auto;}
          .sidenav {overflow: scroll;height: 100%;width:0;position: fixed;z-index: 1;top: 0;left: 0;
              background-color: white;overflow-x: hidden;padding-top: 60px;transition: 0.5s;}
@@ -72,10 +72,9 @@
 
 <div class="map">
 
+<div id="map" style="height: 100%; width: 100%;"></div>
 
 </div>
-
-
 
 <div class="Chat">
 <div>ちゃっと</div>
@@ -103,6 +102,13 @@
 <script src="/socket.io/socket.io.js"></script>
 
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript" src="./Map.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=[APIKEY]&amp;callback=initMap"></script>
+
+
 <script>
 
     jQuery(function($) {
@@ -124,6 +130,7 @@
             }
 
             $messageBox.val('');
+            $('#chat').animate({scrollTop: $('#chat')[0].scrollHeight}, 'fast');
 
         });
                

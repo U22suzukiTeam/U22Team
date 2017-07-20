@@ -1,15 +1,12 @@
 var express = require('express'),
     app = express(),
     server = require('http').createServer(app),
-    io = require("socket.io").listen(server),
-    nicknames = {};
-	
-	app.use(express.static('public'));
-app.use(express.static('files'));
+    io = require("socket.io").listen(server);
 
 server.listen(8080);
 
 app.get('/', function(req, res) {
+	app.use(express.static(__dirname));
 
     res.sendfile(__dirname + '/index.html');
 
