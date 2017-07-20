@@ -8,21 +8,13 @@
 <body>
 <?php
 //configファイルを読み込む
-//require_once('/config.php');
+require_once('/config.php');
 
-$db_user = "suzuki_nishibe";	// ユーザー名
-$db_pass = "putin_kawasaki";	// パスワード
-$db_host = "localhost";	// ホスト名
-$db_name = "U22";	// データベース名
-$db_type = "mysql";	// データベースの種類
-
-//$dsn = db_type.":host=".db_host.";dbname=".db_name.";charset=utf8";
-$dsn = "$db_type:host=$db_host;dbname=$db_name;charset=utf8";
+$dsn = db_type.":host=".db_host.";dbname=".db_name.";charset=utf8";
 
 //dbに接続
 try{
-    //$pdo = new PDO($dsn,db_user,db_pass);
-	$pdo = new PDO($dsn,$db_user,$db_pass);
+    $pdo = new PDO($dsn,db_user,db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 } catch(Exception $Exception) {
@@ -32,7 +24,7 @@ try{
 try {
     $pdo->beginTransaction();
     //プレースホルダーを設定してSQL文を作る
-    $sql = "SELECT accountname , password FROM user WHERE accountname = :accountname";
+    $sql = "SELECT accountname , username , password FROM user WHERE accountname = :accountname";
     //プリペアードステートメントで実行準備をする。
     $stmh = $pdo->prepare($sql);
     //プレースホルダーに設定する値を指示
@@ -50,7 +42,7 @@ try {
             if(password_verify($password,$servedPass)){
                 //セッション発行
                 session_start();
-                $_SESSION['accountname']=$_POST['accountname'];
+                $_SESSION['username']=$_POST['username'];
                 //topページに強制移動
                 header("Location: mypage.php");
             }else{ 
@@ -141,7 +133,6 @@ try {
 <?php
 }
 ?>
-<!--<input type = "button" onclick = "location.href = 'top.html'" value ="トップに戻る">-->
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
