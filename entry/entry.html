@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>新規登録ページ </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+<body>
+  <form name="form1" method="post" action="testConfirm.php" onSubmit="return FormCheck()">
+  <div class="container">
+  <div class="panel panel-primary"
+    style="position:absoluto;
+	top:50%;left:50%;
+	width:400px;
+	margin-left:350px;
+	margin-top:85px;">
+    <div class="panel-heading">
+	  <h1 class="panel-title">新規登録</h1>
+	</div>
+	<div class="panel-body">
+	<div><?php echo htmlspecialchars($errorMessage, ENT_QUOTES); ?></div>
+	  <div class="form-group">
+	    <label for="accountname">アカウント名</label>
+		<input type="text" class="form-control" id="accountname" name="accountname">
+	  </div>
+	  <div class="form-group">
+	    <label for="username">ユーザーネーム(表示名)</label>
+		<input type="text" class="form-control" id="username" name="username">
+	  </div>
+	  <div class="form-group">
+	    <label for="password">パスワード</label>
+		<input type="password" class="form-control" id="password" name="password">
+	  </div>
+	  <div class="form-group">
+	    <label for="password2">パスワード(再入力)</label>
+		<input type="password" class="form-control" id="password2" name="password2">
+	  </div>
+	  <button id="btn" name="btn" type="submit" class="btn btn-primary" style="width:367.5px;">登録</button>
+	  <br><br><br>
+	  <button id="btn2" name="btn2" type="submit" class="btn btn-default" style="width:367.5px;">トップページに戻る</button>
+	</div>
+  </div>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="js/entry.js"></script>
+  
+</body>
+</html>
