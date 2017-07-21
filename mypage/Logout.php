@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-header("Location: top.html");
+header("Location: ../top/top.html");
 
 $_SESSION = array();
 

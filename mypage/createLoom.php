@@ -1,5 +1,5 @@
 <?php
-require_once('config.php');　//DB設定
+require_once('config.php'); //DB設定
 require_once('functions.php'); //DB接続用
 
 session_start();
@@ -28,7 +28,7 @@ try {
         $stmt->execute(array($address));
 
 	//ルーム画面に遷移
-	header("Location: ". $url);
+	header("Location: ". $localurl);
 	exit;
 
 } catch (PDOException $e) {
