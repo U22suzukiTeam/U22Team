@@ -3,7 +3,7 @@
 
     <title>ログイン</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	
+
 </head>
 <body>
 <?php
@@ -32,7 +32,7 @@ try{
 try {
     $pdo->beginTransaction();
     //プレースホルダーを設定してSQL文を作る
-    $sql = "SELECT accountname , password FROM user WHERE accountname = :accountname";
+    $sql = "SELECT accountname, username, password FROM user WHERE accountname = :accountname";
     //プリペアードステートメントで実行準備をする。
     $stmh = $pdo->prepare($sql);
     //プレースホルダーに設定する値を指示
@@ -50,12 +50,12 @@ try {
             if(password_verify($password,$servedPass)){
                 //セッション発行
                 session_start();
-                $_SESSION['accountname']=$_POST['accountname'];
+                $_SESSION['username']=$result['username'];
                 //topページに強制移動
                 header("Location: mypage.php");
-            }else{ 
+            }else{
 				?>
-				
+
 				<div class="text-center" style="font-size:x-large; margin-top:150px;">
 				  <p>申し訳ございません。アカウント名またはパスワードが違います。</p>
 				</div>
@@ -70,13 +70,13 @@ try {
 					<button id="btn" name="btn" type="submit" class="btn btn-lg" style="width:400px">戻る</button>
 	              </div>
 				</form>
-				
+
 				<?php
 			}
-			
+
 		}else{
 			?>
-   
+
 			<div class="text-center" style="font-size:x-large; margin-top:150px;">
 			  <p>申し訳ございません。アカウント名またはパスワードが違います。</p>
 			</div>
@@ -91,7 +91,7 @@ try {
 				<button id="btn" name="btn" type="submit" class="btn btn-lg" style="width:400px">戻る</button>
 			  </div>
 			</form>
-   
+
    <?php
 		}
 
@@ -122,7 +122,7 @@ try {
     $pdo->rollBack();
     //print "エラー：" . $Exception->getMessage()."<BR>";
     //print "アカウント名かパスワードが違います。"."<BR>";?>
-	
+
 	<div class="text-center" style="font-size:x-large; margin-top:150px;">
 	  <p>申し訳ございません。アカウント名またはパスワードが違います。</p>
     </div>
@@ -137,7 +137,7 @@ try {
 		<button id="btn" name="btn" type="submit" class="btn btn-lg" style="width:400px">戻る</button>
 	  </div>
 	</form>
-	
+
 <?php
 }
 ?>

@@ -17,14 +17,14 @@ $address = $_SESSION["username"] . $today;
 
 $url = "http://150.95.140.30/U22Team/room/index.html?address=". $address;
 
-$localurl = "http://localhost/map/index.html?address=". $address;
+$localurl = "http://localhost/U22Team/index.html?address=". $address;
 
 //DB接続
 $pdo = connectDb();
 
 try {
 
-    $stmt = $pdo->prepare("INSERT INTO rooms(address) VALUES (?)");
+    $stmt = $pdo->prepare("INSERT INTO room(address) VALUES (?)");
     $stmt->execute(array($address));
 
     //ルーム画面に遷移
