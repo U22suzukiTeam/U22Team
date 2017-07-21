@@ -1,5 +1,5 @@
 
-var map;
+var map
 var ID = Math.floor(Math.random () * 1000) + 1; //メンバーの管理関係が未完成なので暫定でメンバーIDつけます。
 console.log(ID);
 var pointList = new Array(0);

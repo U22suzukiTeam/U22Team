@@ -1,12 +1,12 @@
 var express = require('express'),
     app = express(),
     server = require('http').createServer(app),
-    io = require("socket.io").listen(server),
-    nicknames = {};
+    io = require("socket.io").listen(server);
 
-server.listen(810);
+server.listen(8080);
 
 app.get('/', function(req, res) {
+	app.use(express.static(__dirname));
 
     res.sendfile(__dirname + '/index.html');
 
@@ -16,41 +16,8 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('send message', function(data) {
 
-        io.sockets.emit('new message', {msg: data, nick: socket.nickname});
+        io.sockets.emit('new message', data);
 
     });
-    
-
-    socket.on('new user', function(data, callback) {
-
-        if (data in nicknames) {
-
-            callback(false);
-
-        } else {
-
-            callback(true);
-            socket.nickname = data;
-            nicknames[socket.nickname] = 1;
-            updateNickNames();
-
-        }
-
-    });
-    
-    socket.on('disconnect', function(data) {
-
-        if(!socket.nickname) return;
-        delete nicknames[socket.nickname];
-        updateNickNames();
-
-    });
-    
-
-    function updateNickNames() {
-
-        io.sockets.emit('usernames', nicknames);
-
-    }
 
 });

@@ -2,7 +2,6 @@
 
 <head>
 
-	<meta charset="UTF-8">
     <title>
 
        るーむ
@@ -10,96 +9,18 @@
     </title>
 
      <style>
-
-         #chat{
-
-             position: relative;
-             width: 100%;
-             float:left;
-             min-height:100px;
-             height: 90%;
-             overflow: auto;
-
-         }
-
-         html,body{
-             height:100vh;
-
-        }
-
-         .user{
-             margin: 0 auto;
-
-         }
-	
-         .map{
-
-             height:50vh ;
-             border:black solid 1px;
-
-         }
-
-         .Chat{
-
-             height: 50vh;
-             border:black solid 1px;
-
-         }
-
-         .log{
-
-             overflow: scroll;
-             width:90%;
-             height: 70%;
-             background-color:lightblue;
-             margin: 0 auto;
-
-         }
-
-         .input-group{
-             width:70%;
-             text-align:center;
-             margin: 0 auto;
-
-         }
-		 
-		 .sidenav {
-		    overflow: scroll;
-			height: 100%;
-			width: 0; 
-			position: fixed; 
-			z-index: 1;
-			top: 0;
-			left: 0;
-			background-color: white;
-			overflow-x: hidden; 
-			padding-top: 60px; 
-			transition: 0.5s;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: black;
-    display: block;
-    transition: 0.3s
-}
-
-.sidenav a:hover, .offcanvas a:focus{
-    color: gray;
-}
-
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-
+         #chat{position: relative;width: 100%;float:left;min-height:100px;height: 90%;overflow:Auto;}
+         html,body{height:100vh;}
+         .user{margin: 0 auto;}
+         .map{height:50vh ;border:black solid 1px;}
+         .Chat{height: 50vh;border:black solid 1px;}
+         .log{width:90%;height:70%;background-color:lightblue;margin: 0 auto;}
+         .input-group{width:70%;text-align:center;margin: 0 auto;}
+         .sidenav {overflow: scroll;height: 100%;width:0;position: fixed;z-index: 1;top: 0;left: 0;
+             background-color: white;overflow-x: hidden;padding-top: 60px;transition: 0.5s;}
+         .sidenav a {padding: 8px 8px 8px 32px;text-decoration: none;font-size: 25px;color: black;display: block;transition: 0.3s}
+         .sidenav a:hover, .offcanvas a:focus{color: gray;}
+         .sidenav .closebtn {position: absolute;top: 0;right: 25px;font-size: 36px;margin-left: 50px;}
      </style>
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
@@ -121,15 +42,9 @@
 	
 	<h>MEMBER LIST</h><BR>
 	
-     <li class="user">青山吉能</li>
-	 <li class="user">永野愛理</li>
-	 <li class="user">奥野香耶</li>
-	 <li class="user">高木美佑</li>
-	 <li class="user">田中美海</li>
-	 <li class="user">山下七海</li>
-	 <li class="user">吉岡茉祐</li>
-	
-	 <input type="text" id="url" style="width:100%;"	value="http://wug-portal.jp/">
+     <li class="user">すずき</li>
+	 
+	 <input type="text" id="url" style="width:100%;"	value="www.suzuki.co.jp/">
      <br>
      <input type="button" value="コピーする" onclick="clipboadCopy()">
   </div>
@@ -148,6 +63,7 @@
           <li><a href="../mypage/mypage.php">MY PAGE</a></li>
       </ul>
   </nav>
+      </ul>
     </div>
   </div>
  </div>
@@ -159,8 +75,6 @@
 <div id="map" style="height: 100%; width: 100%;"></div>
 
 </div>
-
-
 
 <div class="Chat">
 <div>ちゃっと</div>
@@ -187,11 +101,13 @@
 
 <script src="/socket.io/socket.io.js"></script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  
-<script type="text/javascript" src="js/Map.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key={API}&amp;callback=initMap"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript" src="./Map.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=[APIKEY]&amp;callback=initMap"></script>
+
 
 <script>
 
@@ -214,21 +130,16 @@
             }
 
             $messageBox.val('');
+            $('#chat').animate({scrollTop: $('#chat')[0].scrollHeight}, 'fast');
 
         });
                
         socket.on('new message', function(data) {
 
-            $chat.append("<b>田中美海:</b> "+data.msg+"<br/>");
+            $chat.append(data +"<br/>");
 
         });
                
-    });
-
-    $('.memberlist').click(function(){
-
-        $('.body').animate({ width: 'toggle'},'fast');
-
     });
 
 	   var clipboadCopy = function(){
