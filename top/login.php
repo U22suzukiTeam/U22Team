@@ -9,6 +9,7 @@
 <?php
 //configファイルを読み込む
 <<<<<<< HEAD
+<<<<<<< HEAD
 //require_once('/config.php');
 =======
 require_once('config.php');
@@ -19,6 +20,9 @@ $db_pass = "putin_kawasaki";	// パスワード
 $db_host = "localhost";	// ホスト名
 $db_name = "U22";	// データベース名
 $db_type = "mysql";	// データベースの種類
+=======
+require_once('config.php');
+>>>>>>> 49d51c7bbca709f2dc7ced9703e98f1e37dd39b6
 
 //$dsn = db_type.":host=".db_host.";dbname=".db_name.";charset=utf8";
 $dsn = "$db_type:host=$db_host;dbname=$db_name;charset=utf8";
@@ -57,9 +61,14 @@ try {
                 $_SESSION['username']=$result['username'];
                 //topページに強制移動
 <<<<<<< HEAD
+<<<<<<< HEAD
                 header("Location: ../mypage/mypage.php");
                 exit();
             }else{ 
+=======
+                header("Location: mypage.php");
+            }else{
+>>>>>>> 49d51c7bbca709f2dc7ced9703e98f1e37dd39b6
 =======
                 header("Location: mypage.php");
             }else{
