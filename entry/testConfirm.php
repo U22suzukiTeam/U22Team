@@ -54,7 +54,7 @@
   <p>引き続き、本サービスをご利用ください。</p>
   </div>
 
-  <form name="form1" action="top.html">
+  <form name="form1" action="../top/top.html">
     <div class="panel panel-primary"
       style="position:absoluto;
   	         top:50%;left:50%;
