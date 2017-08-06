@@ -1,6 +1,7 @@
 <?php
 
-function getOtherPoint($mID){
+function delPoint($mID) {
+    
     require_once('config.php');
 
     $dsn = db_type.":host=".db_host.";dbname=".db_name.";charset=utf8";
@@ -14,19 +15,14 @@ function getOtherPoint($mID){
     }
 
     try {
-        //dbにアクセス
-        //要素をSELECT * FROM pointで持ってくる
-        //jsonに変換、出力
+        
         $pdo->beginTransaction();
-        //自分以外の人の位置情報を取得
-        $sql = "SELECT * FROM point WHERE memberID != :MID";
+        //該当メンバーの位置情報を削除する
+        $sql = "DELETE FROM point WHERE memberID = :MID";
         $stmh = $pdo->prepare($sql);
-        $stmh->bindValue(':MID',  $mID,  PDO::PARAM_INT );
+        $stmh->bindValue(':MID',  $mID,  PDO::PARAM_STR );
         $stmh->execute();
-        $result = $stmh->fetchAll();
         $pdo->commit();
-
-        print json_encode($result,JSON_UNESCAPED_SLASHES);
 
     } catch (PDOException $Exception) {
         $pdo->rollBack();
@@ -34,6 +30,6 @@ function getOtherPoint($mID){
     }
 }
 
-getOtherPoint($_GET['mID']);
+delPoint($_POST['mID']);
 
 ?>
