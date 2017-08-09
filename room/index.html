@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chatapp</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+     <div class="collapse navbar-collapse" id="nav_target">
+      <ul class="nav navbar-nav">
+	  
+	<div id="sideNavigation" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	
+	<h>MEMBER LIST</h><BR>
+	
+     <li class="user">すずき</li>
+	 
+	 <input type="text" id="url" style="width:100%;"	value="www.suzuki.co.jp/">
+     <br>
+     <input type="button" value="コピーする" onclick="clipboadCopy()">
+  </div>
+
+  <nav class="topnav">
+    <a href="#" onclick="openNav()">
+      <svg width="30" height="30">
+          <path d="M0,5 30,5" stroke="#000" stroke-width="5"/>
+          <path d="M0,14 30,14" stroke="#000" stroke-width="5"/>
+          <path d="M0,23 30,23" stroke="#000" stroke-width="5"/>
+      </svg>
+    </a>
+
+  <ul class="nav navbar-nav navbar-right" >
+          <li><a href="../top/top.html">TOP</a></li>
+          <li><a href="../mypage/mypage.php">MY PAGE</a></li>
+      </ul>
+  </nav>
+      </ul>
+    </div>
+  </div>
+ </div>
+</nav>
+
+
+<div class="map">
+
+<div id="map" style="height: 100%; width: 100%;"></div>
+
+</div>
+<div id="Chat">
+    <div id="wrapper">  
+             
+            <div id="messages">
+
+            </div>
+
+            <div id="msg-container">
+                <input type="text" id="msg" name="msg">
+                <button type="button" id="send-msg">Send</button>
+            
+			</div>
+
+    </div>
+</div>
+    <script id="messages-template" type="text/x-handlebars-template">
+        {{#each messages}}
+        <div class="msg">
+            <div class="details">
+                <span class="text">{{text}}</span><span class="time">({{time}})</span>
+
+            </div>
+        </div>
+        {{/each}}
+    </script>
+<script>
+var clipboadCopy = function(){
+            var urltext = document.getElementById("url");
+            urltext.select();
+            document.execCommand("copy");
+        }
+		
+		function openNav() {
+    document.getElementById("sideNavigation").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("sideNavigation").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+}
+</script>
+    <script src="js/main.js"></script>
+</body>
+</html>
