@@ -131,7 +131,7 @@ var getDestinationPoint  = function (){
                destinationList[val].setMap(map); 
             });
             
-            
+            /*
             $.each(data,function(index,val){
                 var point = new google.maps.LatLng(
                     data[index].latitude,
@@ -141,7 +141,8 @@ var getDestinationPoint  = function (){
                     map: map,
                     position: point
                 });
-            }); 
+            });
+            */
             console.log('あそこに行けってさ');
          },
          error: function(){
