@@ -234,7 +234,7 @@ function setDestination(latLng, map) {
 
     //他のメンバーの位置情報を取得   
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "setDestination.php",
         data: {
             rID: roomID,

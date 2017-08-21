@@ -40,6 +40,5 @@ function setDestination($rID,$lat,$lon) {
 }
 
 
-setDestination($_POST['rID'], $_POST['lat'], $_POST['lon']);
-
+setDestination($_GET['rID'], $_GET['lat'], $_GET['lon']);
 ?>
