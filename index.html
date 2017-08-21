@@ -99,9 +99,6 @@
 
 <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
 
-<script src="/socket.io/socket.io.js"></script>
-
-
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <script type="text/javascript" src="./Map.js"></script>
@@ -111,46 +108,15 @@
 
 <script>
 
-    jQuery(function($) {
-
-        var socket = io.connect();
-        var $messageForm = $('#send-message');
-        var $messageBox = $('#message');
-        var $chat = $('#chat');
-        var $buttonSend = $('#send');
-
-        $messageForm.submit(function(e) {
-
-            e.preventDefault();
-
-            if($messageBox.val()!='') {
-
-                socket.emit('send message', $messageBox.val());
-
-            }
-
-            $messageBox.val('');
-            $('#chat').animate({scrollTop: $('#chat')[0].scrollHeight}, 'fast');
-
-        });
-               
-        socket.on('new message', function(data) {
-
-            $chat.append(data +"<br/>");
-
-        });
-               
-    });
-
-	   var clipboadCopy = function(){
-            var urltext = document.getElementById("url");
-            urltext.select();
-            document.execCommand("copy");
-        }
-		
-		function openNav() {
-    document.getElementById("sideNavigation").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+var clipboadCopy = function(){
+	var urltext = document.getElementById("url");
+	urltext.select();
+    document.execCommand("copy");
+}
+	
+function openNav() {
+	document.getElementById("sideNavigation").style.width = "250px";
+	document.getElementById("main").style.marginLeft = "250px";
 }
 
 function closeNav() {
