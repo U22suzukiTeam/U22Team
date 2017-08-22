@@ -1,15 +1,15 @@
 
 var map;
-var ID = Math.floor(Math.random () * 1000) + 1; //メンバーの管理関係が未完成なので暫定でメンバーIDつけます。
+var ID = Math.floor(Math.random () * 1000) + 1; //メンバーの管理関係が未完成なので仮メンバーIDつけます。
 console.log(ID);
-var roomID = 1;  //ルームIDを付ける機能が謎なので暫定でつけときます。
+var roomID = 1;  //ルームIDを付ける機能が完成しなかったので仮ルームIDをつけます。
 var pointList = new Array(0);
 var destinationList = new Array(0);
 
 function initMap() {
     
     map = new google.maps.Map(document.getElementById('map'), {
-        //デフォ値(地図の中心点)
+        //デフォルト値(地図の中心点)
         center: {lat: 33.8397463, lng: 132.7566273},
         zoom: 14
     });
@@ -32,7 +32,7 @@ var ops ={
 var myplace;
 var MLcnt = 0;
 var mylocation = function (){
-    if (navigator.geolocation) {    //現在地が取得できるか判定します
+    if (navigator.geolocation) {    //現在地が取得が可能か判定します
         navigator.geolocation.watchPosition(function(position) {
             var lat = position.coords.latitude;
             var lon = position.coords.longitude;
@@ -132,18 +132,6 @@ var getDestinationPoint  = function (){
                destinationList[val].setMap(map); 
             });
             
-            /*
-            $.each(data,function(index,val){
-                var point = new google.maps.LatLng(
-                    data[index].latitude,
-                    data[index].longitude
-                );
-                destPoint = new google.maps.Marker({
-                    map: map,
-                    position: point
-                });
-            });
-            */
             console.log('あそこに行けってさ');
          },
          error: function(){
@@ -230,13 +218,7 @@ window.addEventListener('beforeunload',function(){
 
 
 function setDestination(latLng, map) {
-    /*
-    var marker = new google.maps.Marker({
-      position: latLng,
-      map: map
-    });
-    map.panTo(latLng);
-    */
+    
     var lat = latLng.lat();
     var lon = latLng.lng();
 
@@ -260,7 +242,6 @@ function setDestination(latLng, map) {
 
 
 //上から「現在地の取得」「他の人の位置を取得」「目的地の取得」を一定間隔で行います。
-//setInterval(mylocation, 1000);
 mylocation();
 setInterval(getOtherPoint, 1000);
 setInterval(getDestinationPoint, 5000);
