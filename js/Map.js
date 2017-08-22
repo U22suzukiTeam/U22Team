@@ -120,7 +120,8 @@ var getDestinationPoint  = function (){
 
                 destination = new google.maps.Marker({
                     //map: map,
-                    position: point
+                    position: point,
+                    label: "P"
                 });
                 destinationList.push(destination);
     
@@ -180,7 +181,13 @@ var getOtherPoint  = function (){
 
                 memberPoint = new google.maps.Marker({
                     //map: map,
-                    position: point
+                    position: point,
+                    icon: {
+                        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                        scale: 5,
+                        fillColor: "blue",
+                        strokeColor: "blue"
+                    }
                 });
                 pointList.push(memberPoint);
     
