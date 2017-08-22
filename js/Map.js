@@ -1,7 +1,7 @@
 
 var map;
 var ID = Math.floor(Math.random () * 1000) + 1; //メンバーの管理関係が未完成なので仮メンバーIDつけます。
-console.log(ID);
+console.log("仮メンバーID: " + ID);
 var roomID = 1;  //ルームIDを付ける機能が完成しなかったので仮ルームIDをつけます。
 var pointList = new Array(0);
 var destinationList = new Array(0);
@@ -43,15 +43,12 @@ var mylocation = function (){
 
             if(MLcnt === 0){  //初回のみ現在地マーカの削除を行わない
                 ++MLcnt;
-                console.log("初回");
             }else{
                 myplace.setMap(null);
-                console.log('現在地更新');
             }
 
             //現在地にマーカを置きます
             myplace = new google.maps.Marker({
-                //map: map,
                 position: pos,
                 icon: {
                     path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
@@ -68,11 +65,8 @@ var mylocation = function (){
                     lat: lat,
                     lon: lon
                 },
-                success: function(){
-                     console.log("やったぜ現在地登録");
-                },
                 error: function(response){
-                    console.log("ダメだったぜ現登");
+                    console.log("現在地の登録に失敗");
                 }
             });
 
@@ -119,7 +113,6 @@ var getDestinationPoint  = function (){
                 );
 
                 destination = new google.maps.Marker({
-                    //map: map,
                     position: point,
                     label: "P"
                 });
@@ -132,10 +125,9 @@ var getDestinationPoint  = function (){
                destinationList[val].setMap(map); 
             });
             
-            console.log('あそこに行けってさ');
          },
          error: function(){
-             console.log('いったいどこにいけってんだ？');
+             console.log('目的地の取得に失敗');
          }
     });
 };
@@ -168,7 +160,6 @@ var getOtherPoint  = function (){
                 );
 
                 memberPoint = new google.maps.Marker({
-                    //map: map,
                     position: point,
                     icon: {
                         path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
@@ -185,11 +176,10 @@ var getOtherPoint  = function (){
             $.each(pointList,function(val,index){
                pointList[val].setMap(map); 
             });
-            console.log('奴はそこだ');
                  
          },
          error: function () {
-            console.log('他の人の場所、それがわからない');
+            console.log('ルームメンバーの現在地取得失敗');
         }
     });
 };
@@ -231,11 +221,8 @@ function setDestination(latLng, map) {
             lat: lat,
             lon: lon
         },
-         success: function (data) {
-           console.log('あそこに行くんだいいな？');
-         },
-         error: function () {
-            console.log('なぜだ。俺をおいていくな');
+        error: function () {
+            console.log('目的地指定失敗');
         }
     });
 }
